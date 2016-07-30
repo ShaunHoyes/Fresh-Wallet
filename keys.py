@@ -1,21 +1,15 @@
-import os
+import base58
 import ecdsa
 import hashlib
-import base58
+import os
 
-#private_key = os.urandom(32).encode("hex")
-
-private_key = "73356839c2883cdf723b44f329928d5acd51e0b3b9d88ea3e1639e34e1dc6958"
-
-print "this is my private key: " + private_key
+private_key = os.urandom(32).encode("hex")
 
 sk = ecdsa.SigningKey.from_string(private_key.decode("hex"), curve = ecdsa.SECP256k1)
 
 vk = sk.verifying_key
 
 public_key = ('\04' + vk.to_string()).encode("hex")
-
-print "this is my public key: " + public_key
 
 ripemd160 = hashlib.new('ripemd160')
 
@@ -29,4 +23,8 @@ binary_addr = middle_man + checksum
 
 addr = base58.b58encode(binary_addr)
 
-print "this is my BTC address: " + addr
+print "Fresh Wallet"
+print "============"
+print "private key: " + private_key + "\n"
+print "public key: " + public_key + "\n"
+print "BTC address: " + addr
