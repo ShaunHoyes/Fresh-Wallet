@@ -23,8 +23,10 @@ binary_addr = middle_man + checksum
 
 addr = base58.b58encode(binary_addr)
 
+print " "
 print "Fresh Wallet"
 print "============"
 print "private key: " + private_key + "\n"
 print "public key: " + public_key + "\n"
 print "BTC address: " + addr
+print " "
